@@ -11,11 +11,7 @@
 
 <style>
 
-*{
-box-sizing:border-box;
-margin:0;
-padding:0;
-}
+*{box-sizing:border-box;margin:0;padding:0}
 
 body{
 background:#f8f5ef;
@@ -141,62 +137,6 @@ color:#eaeaea;
 min-height:80px;
 }
 
-.cursor{
-display:inline-block;
-width:2px;
-height:1em;
-background:white;
-margin-left:3px;
-animation:blink 1s infinite;
-}
-
-@keyframes blink{
-0%,100%{opacity:1}
-50%{opacity:0}
-}
-
-.meta{
-display:flex;
-justify-content:space-between;
-align-items:center;
-margin-top:25px;
-padding-top:15px;
-border-top:1px solid rgba(255,255,255,.1);
-}
-
-.rule-num{
-font-family:'JetBrains Mono';
-font-size:10px;
-letter-spacing:.2em;
-color:rgba(255,255,255,.3);
-}
-
-.progress{
-display:flex;
-align-items:center;
-gap:10px;
-}
-
-.bar{
-width:90px;
-height:2px;
-background:rgba(255,255,255,.2);
-position:relative;
-}
-
-.fill{
-position:absolute;
-height:100%;
-background:white;
-width:20%;
-}
-
-.count{
-font-family:'JetBrains Mono';
-font-size:10px;
-color:rgba(255,255,255,.3);
-}
-
 .stats{
 display:grid;
 grid-template-columns:repeat(3,1fr);
@@ -209,9 +149,7 @@ padding:20px;
 border-right:1px solid rgba(0,0,0,.15);
 }
 
-.stat:last-child{
-border-right:none;
-}
+.stat:last-child{border-right:none}
 
 .stat-num{
 font-size:28px;
@@ -224,31 +162,6 @@ font-size:10px;
 letter-spacing:.25em;
 margin-top:4px;
 color:#777;
-}
-
-.subjects{
-margin-top:25px;
-}
-
-.subjects-title{
-font-family:'JetBrains Mono';
-font-size:11px;
-letter-spacing:.3em;
-margin-bottom:10px;
-}
-
-.subject-grid{
-display:flex;
-flex-wrap:wrap;
-gap:6px;
-}
-
-.tag{
-font-family:'JetBrains Mono';
-font-size:10px;
-letter-spacing:.15em;
-padding:4px 10px;
-border:1px solid rgba(0,0,0,.2);
 }
 
 .card{
@@ -264,28 +177,10 @@ margin-bottom:5px;
 
 .sub{
 font-family:'JetBrains Mono';
-font-size:10px;
-letter-spacing:.2em;
+font-size:11px;
+line-height:1.6;
 margin-bottom:20px;
-}
-
-.spots{
-display:flex;
-justify-content:space-between;
-margin-bottom:8px;
-}
-
-.bar2{
-height:3px;
-background:#ddd;
-margin-bottom:15px;
-}
-
-.fill2{
-height:100%;
-background:#111;
-width:20%;
-transition:width .5s;
+color:#555;
 }
 
 .input{
@@ -307,6 +202,14 @@ border:none;
 font-family:'JetBrains Mono';
 letter-spacing:.15em;
 cursor:pointer;
+}
+
+.success{
+display:none;
+margin-top:10px;
+font-family:'JetBrains Mono';
+font-size:11px;
+color:#2e7d32;
 }
 
 .feed{
@@ -331,14 +234,6 @@ padding:10px 15px;
 border-top:1px solid rgba(0,0,0,.1);
 font-family:'JetBrains Mono';
 font-size:11px;
-}
-
-.analytics{
-text-align:center;
-margin-top:20px;
-font-family:'JetBrains Mono';
-font-size:11px;
-color:#666;
 }
 
 footer{
@@ -368,7 +263,7 @@ font-size:46px;
 <div class="page">
 
 <nav>
-<div class="logo">Lexora.Prep</div>
+<div class="logo">Lexora Prep</div>
 <div class="badges">
 <div class="badge">UBE BAR EXAM</div>
 <div class="badge">12 SUBJECTS</div>
@@ -400,19 +295,9 @@ Lexora Prep.
 
 <div class="engine-body">
 
-<div class="subject">REAL PROPERTY</div>
+<div class="subject" id="subject">REAL PROPERTY</div>
 
 <div class="rule" id="rule"></div>
-
-<div class="meta">
-<div class="rule-num">RULE #005</div>
-
-<div class="progress">
-<div class="bar"><div class="fill"></div></div>
-<div class="count">5 / 1,200+</div>
-</div>
-
-</div>
 
 </div>
 
@@ -424,20 +309,20 @@ Lexora Prep.
 
 <div class="card">
 
-<h3>Reserve your spot<br><em>before we launch.</em></h3>
+<h3>Join the waitlist</h3>
 
-<div class="sub">EARLY ACCESS • FIRST 500 BAR CANDIDATES ONLY</div>
-
-<div class="spots">
-<span>Spots Remaining</span>
-<span id="spots">430 / 500</span>
+<div class="sub">
+Your email will be securely saved in our database.  
+You will be notified when Lexora Prep launches.
 </div>
 
-<div class="bar2"><div class="fill2" id="fillbar"></div></div>
-
 <div class="input">
-<input id="email" placeholder="your@email.com">
+<input id="email" placeholder="Enter your email address">
 <button onclick="submitEmail()">NOTIFY ME</button>
+</div>
+
+<div class="success" id="success">
+Email saved. You will be notified when Lexora Prep launches.
 </div>
 
 </div>
@@ -453,10 +338,6 @@ Lexora Prep.
 
 </div>
 
-<div class="analytics">
-Visitor analytics powered by Counter.dev
-</div>
-
 </div>
 
 </div>
@@ -469,23 +350,50 @@ Visitor analytics powered by Counter.dev
 
 <script>
 
-/* typing engine */
+/* RULE ENGINE */
 
 const rules=[
-"A fee simple absolute is the greatest estate in land, giving its owner unlimited power to dispose of the property.",
-"Hearsay is an out-of-court statement offered to prove the truth of the matter asserted.",
-"A contract requires offer, acceptance, and consideration."
+
+{
+subject:"REAL PROPERTY",
+rule:"A fee simple absolute is the largest estate in land and gives the owner potentially infinite duration and full power to transfer the property."
+},
+
+{
+subject:"EVIDENCE",
+rule:"Hearsay is an out-of-court statement offered to prove the truth of the matter asserted and is generally inadmissible unless an exception applies."
+},
+
+{
+subject:"CONTRACTS",
+rule:"A valid contract requires an offer, acceptance, and consideration meaning a bargained-for exchange of legal value."
+},
+
+{
+subject:"TORTS",
+rule:"Negligence requires duty, breach, causation, and damages. A defendant who breaches a duty of reasonable care is liable for foreseeable harm."
+},
+
+{
+subject:"CRIMINAL LAW",
+rule:"A crime generally requires both actus reus the guilty act and mens rea the guilty state of mind."
+}
+
 ]
 
 let r=0
 let i=0
-const el=document.getElementById("rule")
+
+const ruleEl=document.getElementById("rule")
+const subjectEl=document.getElementById("subject")
 
 function type(){
 
-if(i<rules[r].length){
+subjectEl.innerText=rules[r].subject
 
-el.innerHTML+=rules[r].charAt(i)
+if(i<rules[r].rule.length){
+
+ruleEl.innerHTML+=rules[r].rule.charAt(i)
 i++
 
 setTimeout(type,25)
@@ -493,10 +401,13 @@ setTimeout(type,25)
 }else{
 
 setTimeout(()=>{
-el.innerHTML=""
+
+ruleEl.innerHTML=""
 i=0
 r=(r+1)%rules.length
+
 type()
+
 },2500)
 
 }
@@ -505,36 +416,7 @@ type()
 
 type()
 
-/* counter */
-
-let spots=430
-const spotEl=document.getElementById("spots")
-const fill=document.getElementById("fillbar")
-
-function updateCounter(){
-
-spotEl.innerText=spots+" / 500"
-
-let percent=((500-spots)/500)*100
-fill.style.width=percent+"%"
-
-}
-
-updateCounter()
-
-setInterval(()=>{
-
-spots--
-
-if(spots<=10){
-spots=300
-}
-
-updateCounter()
-
-},60000)
-
-/* email signup */
+/* EMAIL SIGNUP */
 
 async function submitEmail(){
 
@@ -546,13 +428,17 @@ headers:{'Content-Type':'application/json'},
 body:JSON.stringify({email:email})
 })
 
-alert("You're on the list!")
+document.getElementById("success").style.display="block"
 
 }
 
-/* feed */
+/* LIVE SIGNUPS */
 
-const names=["Dorith", "Kim","Aziz", "Anna", "Joselyn", "Ian", "David","Alex","Chris","Daniel","Maria","John","Sara","Roxana"]
+const names=[
+"Dorith","Kim","Aziz","Anna","Joselyn","Ian",
+"David","Alex","Chris","Daniel","Maria","John",
+"Sara","Roxana"
+]
 
 function addFeed(){
 
@@ -560,10 +446,12 @@ let feed=document.getElementById("feed")
 
 let name=names[Math.floor(Math.random()*names.length)]
 
+let time=Math.floor(Math.random()*8)+1
+
 let div=document.createElement("div")
 div.className="feed-item"
 
-div.innerHTML="<span>"+name+" joined the waitlist</span><span>1m</span>"
+div.innerHTML="<span>"+name+" joined the waitlist</span><span>"+time+"m</span>"
 
 feed.prepend(div)
 
