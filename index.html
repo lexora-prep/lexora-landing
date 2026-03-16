@@ -35,11 +35,13 @@ margin-bottom:20px;
 }
 
 .engine{
-background:#111;
-color:#fff;
+background:#0e0e0e;
+color:#9cff9c;
 padding:20px;
 font-family:'JetBrains Mono',monospace;
 margin-top:20px;
+border-radius:4px;
+min-height:60px;
 }
 
 .card{
@@ -119,7 +121,15 @@ padding:10px 14px;
 font-size:12px;
 border-radius:4px;
 font-family:'JetBrains Mono';
+animation:fadein .4s;
 }
+
+@keyframes fadein{
+from{opacity:0;transform:translateY(10px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+/* MOBILE */
 
 @media(max-width:900px){
 
@@ -150,7 +160,7 @@ with Lexora.
 </h1>
 
 <div class="engine">
-Lexora rule engine initializing...
+<span id="typing"></span>
 </div>
 
 </div>
@@ -163,7 +173,7 @@ Lexora rule engine initializing...
 
 <div style="display:flex;justify-content:space-between;margin-bottom:5px">
 <span>Spots Remaining</span>
-<span id="spots">440 / 500</span>
+<span id="spots">60 / 500</span>
 </div>
 
 <div class="bar">
@@ -192,6 +202,8 @@ You're on the list. We'll email you when Lexora launches.
 
 <script>
 
+/* COUNTER */
+
 const TOTAL=500
 let claimed=60
 
@@ -209,6 +221,8 @@ fill.style.width=pct+"%"
 }
 
 update()
+
+/* EMAIL SUBMISSION */
 
 async function submitEmail(){
 
@@ -232,6 +246,8 @@ document.getElementById("success").style.display="block"
 
 }
 
+/* SOCIAL PROOF POPUPS */
+
 const names=["Alex","Sarah","Daniel","Chris","Maria","David"]
 const cities=["NY","Texas","Chicago","California"]
 
@@ -252,6 +268,56 @@ setTimeout(()=>div.remove(),5000)
 }
 
 setInterval(popup,20000)
+
+/* TYPING ENGINE */
+
+const rules=[
+
+"Rule #101 — Consideration requires a bargained-for exchange.",
+
+"Rule #214 — A valid contract requires offer, acceptance, and consideration.",
+
+"Rule #338 — Hearsay is an out-of-court statement offered for the truth of the matter asserted.",
+
+"Rule #412 — Negligence requires duty, breach, causation, and damages.",
+
+"Rule #517 — Personal jurisdiction requires minimum contacts."
+
+]
+
+let ruleIndex=0
+let charIndex=0
+
+const typingEl=document.getElementById("typing")
+
+function typeRule(){
+
+if(charIndex<rules[ruleIndex].length){
+
+typingEl.textContent+=rules[ruleIndex].charAt(charIndex)
+charIndex++
+
+setTimeout(typeRule,30)
+
+}
+
+else{
+
+setTimeout(()=>{
+
+typingEl.textContent=""
+charIndex=0
+ruleIndex=(ruleIndex+1)%rules.length
+
+typeRule()
+
+},2500)
+
+}
+
+}
+
+typeRule()
 
 </script>
 
