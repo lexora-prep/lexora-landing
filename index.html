@@ -3,38 +3,473 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lexora Prep — UBE Bar Exam</title>
+<title>Lexora Prep — Know the Law</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 
-*{margin:0;padding:0;box-sizing:border-box;}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
 :root{
---bg:#f2ede3;
---bg2:#ebe4d8;
---ink:#111018;
---ink-mid:#3a3830;
---ink-soft:#7a7568;
---ink-faint:#b0a898;
---blue:#1a4fd6;
---blue-mid:#3061e0;
---blue-pale:#dce6fc;
---gold:#9a6e00;
---border:rgba(17,16,24,0.1);
---border-md:rgba(17,16,24,0.18);
---display:'Bebas Neue',sans-serif;
---serif:'Playfair Display',Georgia,serif;
---mono:'IBM Plex Mono',monospace;
+--bg:#FDFAF5;
+--bg2:#F5F0E8;
+--bg3:#EDE5D8;
+--ink:#18140F;
+--ink2:#3C3528;
+--ink3:#7C7060;
+--ink4:#B8AC9C;
+--border:rgba(24,20,15,0.1);
+--border2:rgba(24,20,15,0.16);
+--serif:'Cormorant Garamond',Georgia,serif;
+--sans:'DM Sans',system-ui,sans-serif;
+--mono:'JetBrains Mono',monospace;
 }
 
 html,body{
 height:100%;
 background:var(--bg);
 color:var(--ink);
+font-family:var(--sans);
+overflow-x:hidden;
+cursor:default;
+}
+
+/* Custom cursor */
+
+#cur,#cur2{
+position:fixed;
+border-radius:50%;
+pointer-events:none;
+transform:translate(-50%,-50%);
+z-index:9999;
+}
+
+#cur{
+width:8px;
+height:8px;
+background:var(--ink);
+}
+
+#cur2{
+width:28px;
+height:28px;
+border:1.5px solid rgba(24,20,15,.3);
+}
+
+/* Layout */
+
+.page{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+}
+
+nav{
+padding:1.2rem 2.5rem;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid var(--border);
+}
+
+.nav-logo{
+font-family:var(--serif);
+font-size:1.4rem;
+font-weight:700;
+}
+
+.main-grid{
+flex:1;
+display:grid;
+grid-template-columns:1fr 400px;
+max-width:1300px;
+margin:0 auto;
+width:100%;
+padding:0 2.5rem;
+}
+
+.left-col{
+padding:3rem 3.5rem 3rem 0;
+border-right:1px solid var(--border);
+}
+
+.page-title{
+font-family:var(--serif);
+font-size:clamp(3.5rem,6.5vw,6rem);
+line-height:.92;
+margin-bottom:1.5rem;
+}
+
+.engine-wrap{
+background:#111;
+color:#fff;
+padding:1.5rem;
+margin:2rem 0;
 font-family:var(--mono);
+font-size:.85rem;
+line-height:1.7;
+}
+
+.right-col{
+padding:3rem 0 3rem 2.8rem;
+}
+
+.signup-card{
+background:var(--bg2);
+border:1px solid var(--border2);
+padding:1.8rem;
+}
+
+.sc-title{
+font-family:var(--serif);
+font-size:1.6rem;
+font-weight:700;
+margin-bottom:.3rem;
+}
+
+.sc-sub{
+font-family:var(--mono);
+font-size:.52rem;
+letter-spacing:.18em;
+text-transform:uppercase;
+color:var(--ink3);
+margin-bottom:1.5rem;
+}
+
+.sc-spots-row{
+display:flex;
+justify-content:space-between;
+margin-bottom:.4rem;
+}
+
+.sc-bar{
+height:3px;
+background:var(--bg3);
+margin-bottom:1.4rem;
+position:relative;
+}
+
+.sc-bar-fill{
+position:absolute;
+top:0;
+left:0;
+height:100%;
+background:var(--ink);
+width:0;
+}
+
+.sc-field{
+display:flex;
+}
+
+.sc-email{
+flex:1;
+padding:.88rem 1rem;
+border:1.5px solid var(--border2);
+font-family:var(--mono);
+}
+
+.sc-btn{
+background:var(--ink);
+color:#fff;
+border:none;
+padding:0 1.3rem;
+font-family:var(--mono);
+letter-spacing:.2em;
+text-transform:uppercase;
+cursor:pointer;
+}
+
+.sc-success{
+display:none;
+padding:.9rem;
+background:#F0F9F0;
+border:1px solid #66BB6A;
+margin-top:.5rem;
+}
+
+footer{
+padding:1rem 2.5rem;
+border-top:1px solid var(--border);
+display:flex;
+justify-content:space-between;
+}
+
+.popup{
+position:fixed;
+bottom:20px;
+left:20px;
+background:#111;
+color:#fff;
+padding:10px 14px;
+font-size:12px;
+z-index:9999;
+border-radius:4px;
+font-family:var(--mono);
+animation:fadein .4s;
+}
+
+@keyframes fadein{
+from{opacity:0;transform:translateY(10px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+/* MOBILE */
+
+@media (max-width:960px){
+
+.main-grid{
+grid-template-columns:1fr;
+padding:0 1.2rem;
+}
+
+.left-col{
+padding:2rem 0 1.5rem;
+border-right:none;
+border-bottom:1px solid var(--border);
+}
+
+.right-col{
+padding:1.8rem 0;
+}
+
+.page-title{
+font-size:clamp(2.6rem,10vw,3.4rem);
+}
+
+.engine-wrap{
+font-size:.8rem;
+padding:1.2rem;
+}
+
+.signup-card{
+padding:1.4rem;
+}
+
+.sc-field{
+flex-direction:column;
+gap:8px;
+}
+
+.sc-email{
+width:100%;
+}
+
+.sc-btn{
+width:100%;
+padding:12px;
+}
+
+nav{
+padding:1rem 1.2rem;
+}
+
+footer{
+padding:1rem 1.2rem;
+flex-direction:column;
+gap:8px;
+text-align:center;
+}
+
+.popup{
+left:50%;
+transform:translateX(-50%);
+bottom:14px;
+font-size:11px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="cur"></div>
+<div id="cur2"></div>
+
+<div class="page">
+
+<nav>
+<div class="nav-logo">Lexora Prep</div>
+</nav>
+
+<div class="main-grid">
+
+<div class="left-col">
+
+<h1 class="page-title">
+Know Every<br>
+Black Letter Rule<br>
+with Lexora.
+</h1>
+
+<div class="engine-wrap">
+Lexora rule engine initializing...
+</div>
+
+</div>
+
+<div class="right-col">
+
+<div class="signup-card">
+
+<div class="sc-title">
+Reserve your spot before we launch
+</div>
+
+<div class="sc-sub">
+First 500 bar candidates only
+</div>
+
+<div class="sc-spots-row">
+<div>Spots Remaining</div>
+<div id="spotsNum">440 / 500</div>
+</div>
+
+<div class="sc-bar">
+<div class="sc-bar-fill" id="spotsFill"></div>
+</div>
+
+<div class="sc-field" id="scField">
+
+<input
+type="email"
+id="scEmail"
+class="sc-email"
+placeholder="your@email.com">
+
+<button class="sc-btn" onclick="doSubmit()">
+Notify Me
+</button>
+
+</div>
+
+<div class="sc-success" id="scSuccess">
+You're on the list. We'll email you when Lexora launches.
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>
+<div>© 2026 Lexora Prep</div>
+<div>Lex est ratio scripta</div>
+</footer>
+
+</div>
+
+<script>
+
+/* cursor */
+
+const c1=document.getElementById('cur')
+const c2=document.getElementById('cur2')
+
+let mx=0,my=0,rx=0,ry=0
+
+document.addEventListener('mousemove',e=>{
+mx=e.clientX
+my=e.clientY
+})
+
+function loop(){
+c1.style.left=mx+'px'
+c1.style.top=my+'px'
+rx+=(mx-rx)*.13
+ry+=(my-ry)*.13
+c2.style.left=rx+'px'
+c2.style.top=ry+'px'
+requestAnimationFrame(loop)
+}
+loop()
+
+/* counter */
+
+const TOTAL=500
+let claimed=60
+
+const spotsEl=document.getElementById('spotsNum')
+const fillEl=document.getElementById('spotsFill')
+
+function updateSpots(n){
+const left=TOTAL-n
+const pct=Math.round((n/TOTAL)*100)
+spotsEl.textContent=left+" / "+TOTAL
+fillEl.style.width=pct+"%"
+}
+
+updateSpots(claimed)
+
+/* submit */
+
+async function doSubmit(){
+
+const inp=document.getElementById('scEmail')
+const field=document.getElementById('scField')
+const succ=document.getElementById('scSuccess')
+
+if(field.style.display==="none") return
+
+const email=inp.value.trim()
+
+if(!email || !email.includes("@") || email.split("@")[1].indexOf(".")<1){
+inp.style.borderColor="#B22222"
+return
+}
+
+try{
+
+await fetch("https://formspree.io/f/xgonnabr",{
+method:"POST",
+headers:{
+"Content-Type":"application/json",
+"Accept":"application/json"
+},
+body:JSON.stringify({email:email})
+})
+
+}catch(e){console.log(e)}
+
+claimed += 2
+updateSpots(claimed)
+
+field.style.display="none"
+succ.style.display="block"
+
+}
+
+/* social proof */
+
+const names=["Alex","Sarah","Daniel","Chris","Maria","David","Liam","Emma"]
+const cities=["NY","Texas","California","Florida","Chicago","Boston"]
+
+function popupSignup(){
+
+const name=names[Math.floor(Math.random()*names.length)]
+const city=cities[Math.floor(Math.random()*cities.length)]
+
+const box=document.createElement("div")
+box.className="popup"
+box.innerHTML=`${name} from ${city} joined the waitlist`
+
+document.body.appendChild(box)
+
+setTimeout(()=>box.remove(),5000)
+
+}
+
+setInterval(popupSignup,18000)
+
+</script>
+
+</body>
+</html>font-family:var(--mono);
 overflow-x:hidden;
 cursor:default;
 }
