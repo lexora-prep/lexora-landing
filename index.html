@@ -137,33 +137,6 @@ color:#eaeaea;
 min-height:80px;
 }
 
-.stats{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-margin-top:30px;
-border:1px solid rgba(0,0,0,.15);
-}
-
-.stat{
-padding:20px;
-border-right:1px solid rgba(0,0,0,.15);
-}
-
-.stat:last-child{border-right:none}
-
-.stat-num{
-font-size:28px;
-font-weight:700;
-}
-
-.stat-label{
-font-family:'JetBrains Mono';
-font-size:10px;
-letter-spacing:.25em;
-margin-top:4px;
-color:#777;
-}
-
 .card{
 border:1px solid rgba(0,0,0,.15);
 background:#f1ece4;
@@ -172,7 +145,7 @@ padding:25px;
 
 .card h3{
 font-size:24px;
-margin-bottom:5px;
+margin-bottom:10px;
 }
 
 .sub{
@@ -210,30 +183,6 @@ margin-top:10px;
 font-family:'JetBrains Mono';
 font-size:11px;
 color:#2e7d32;
-}
-
-.feed{
-border:1px solid rgba(0,0,0,.15);
-margin-top:20px;
-}
-
-.feed-header{
-background:#f1ece4;
-padding:10px 15px;
-display:flex;
-justify-content:space-between;
-font-family:'JetBrains Mono';
-font-size:11px;
-letter-spacing:.2em;
-}
-
-.feed-item{
-display:flex;
-justify-content:space-between;
-padding:10px 15px;
-border-top:1px solid rgba(0,0,0,.1);
-font-family:'JetBrains Mono';
-font-size:11px;
 }
 
 footer{
@@ -327,17 +276,6 @@ Email saved. You will be notified when Lexora Prep launches.
 
 </div>
 
-<div class="feed">
-
-<div class="feed-header">
-<span>RECENT SIGN-UPS</span>
-<span>LIVE</span>
-</div>
-
-<div id="feed"></div>
-
-</div>
-
 </div>
 
 </div>
@@ -349,8 +287,6 @@ Email saved. You will be notified when Lexora Prep launches.
 </div>
 
 <script>
-
-/* RULE ENGINE */
 
 const rules=[
 
@@ -416,8 +352,6 @@ type()
 
 type()
 
-/* EMAIL SIGNUP */
-
 async function submitEmail(){
 
 let email=document.getElementById("email").value
@@ -431,37 +365,6 @@ body:JSON.stringify({email:email})
 document.getElementById("success").style.display="block"
 
 }
-
-/* LIVE SIGNUPS */
-
-const names=[
-"Dorith","Kim","Aziz","Anna","Joselyn","Ian",
-"David","Alex","Chris","Daniel","Maria","John",
-"Sara","Roxana"
-]
-
-function addFeed(){
-
-let feed=document.getElementById("feed")
-
-let name=names[Math.floor(Math.random()*names.length)]
-
-let time=Math.floor(Math.random()*8)+1
-
-let div=document.createElement("div")
-div.className="feed-item"
-
-div.innerHTML="<span>"+name+" joined the waitlist</span><span>"+time+"m</span>"
-
-feed.prepend(div)
-
-if(feed.children.length>5){
-feed.removeChild(feed.lastChild)
-}
-
-}
-
-setInterval(addFeed,15000)
 
 </script>
 
