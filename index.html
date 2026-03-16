@@ -1,200 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lexora Prep — Know the Law</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Lexora Prep</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
 
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-
-:root{
---bg:#FDFAF5;
---bg2:#F5F0E8;
---bg3:#EDE5D8;
---ink:#18140F;
---ink2:#3C3528;
---ink3:#7C7060;
---ink4:#B8AC9C;
---border:rgba(24,20,15,0.1);
---border2:rgba(24,20,15,0.16);
---serif:'Cormorant Garamond',Georgia,serif;
---sans:'DM Sans',system-ui,sans-serif;
---mono:'JetBrains Mono',monospace;
+body{
+margin:0;
+font-family:'Cormorant Garamond',serif;
+background:#f6f2ea;
+color:#1a1a1a;
 }
 
-html,body{
-height:100%;
-background:var(--bg);
-color:var(--ink);
-font-family:var(--sans);
-overflow-x:hidden;
-cursor:default;
-}
-
-/* Custom cursor */
-
-#cur,#cur2{
-position:fixed;
-border-radius:50%;
-pointer-events:none;
-transform:translate(-50%,-50%);
-z-index:9999;
-}
-
-#cur{
-width:8px;
-height:8px;
-background:var(--ink);
-}
-
-#cur2{
-width:28px;
-height:28px;
-border:1.5px solid rgba(24,20,15,.3);
-}
-
-/* Layout */
-
-.page{
-min-height:100vh;
-display:flex;
-flex-direction:column;
-}
-
-nav{
-padding:1.2rem 2.5rem;
-display:flex;
-justify-content:space-between;
-align-items:center;
-border-bottom:1px solid var(--border);
-}
-
-.nav-logo{
-font-family:var(--serif);
-font-size:1.4rem;
-font-weight:700;
-}
-
-.main-grid{
-flex:1;
+.container{
+max-width:1100px;
+margin:auto;
+padding:40px 20px;
 display:grid;
-grid-template-columns:1fr 400px;
-max-width:1300px;
-margin:0 auto;
-width:100%;
-padding:0 2.5rem;
+grid-template-columns:1fr 380px;
+gap:60px;
 }
 
-.left-col{
-padding:3rem 3.5rem 3rem 0;
-border-right:1px solid var(--border);
+h1{
+font-size:56px;
+line-height:1.05;
+margin-bottom:20px;
 }
 
-.page-title{
-font-family:var(--serif);
-font-size:clamp(3.5rem,6.5vw,6rem);
-line-height:.92;
-margin-bottom:1.5rem;
-}
-
-.engine-wrap{
+.engine{
 background:#111;
 color:#fff;
-padding:1.5rem;
-margin:2rem 0;
-font-family:var(--mono);
-font-size:.85rem;
-line-height:1.7;
+padding:20px;
+font-family:'JetBrains Mono',monospace;
+margin-top:20px;
 }
 
-.right-col{
-padding:3rem 0 3rem 2.8rem;
+.card{
+background:#efe9df;
+padding:25px;
+border:1px solid #ddd;
 }
 
-.signup-card{
-background:var(--bg2);
-border:1px solid var(--border2);
-padding:1.8rem;
+.title{
+font-size:26px;
+margin-bottom:5px;
 }
 
-.sc-title{
-font-family:var(--serif);
-font-size:1.6rem;
-font-weight:700;
-margin-bottom:.3rem;
-}
-
-.sc-sub{
-font-family:var(--mono);
-font-size:.52rem;
+.sub{
+font-family:'JetBrains Mono';
+font-size:11px;
 letter-spacing:.18em;
 text-transform:uppercase;
-color:var(--ink3);
-margin-bottom:1.5rem;
+margin-bottom:20px;
 }
 
-.sc-spots-row{
-display:flex;
-justify-content:space-between;
-margin-bottom:.4rem;
-}
-
-.sc-bar{
-height:3px;
-background:var(--bg3);
-margin-bottom:1.4rem;
+.bar{
+height:4px;
+background:#ddd;
+margin-bottom:20px;
 position:relative;
 }
 
-.sc-bar-fill{
+.fill{
 position:absolute;
-top:0;
-left:0;
 height:100%;
-background:var(--ink);
+background:#111;
 width:0;
 }
 
-.sc-field{
+.row{
 display:flex;
+gap:10px;
 }
 
-.sc-email{
+input{
 flex:1;
-padding:.88rem 1rem;
-border:1.5px solid var(--border2);
-font-family:var(--mono);
+padding:12px;
+font-family:'JetBrains Mono';
+border:1px solid #ccc;
 }
 
-.sc-btn{
-background:var(--ink);
+button{
+padding:12px 18px;
+background:#111;
 color:#fff;
 border:none;
-padding:0 1.3rem;
-font-family:var(--mono);
-letter-spacing:.2em;
-text-transform:uppercase;
 cursor:pointer;
 }
 
-.sc-success{
+.success{
 display:none;
-padding:.9rem;
-background:#F0F9F0;
-border:1px solid #66BB6A;
-margin-top:.5rem;
+background:#e7f6ea;
+padding:10px;
+margin-top:10px;
 }
 
 footer{
-padding:1rem 2.5rem;
-border-top:1px solid var(--border);
-display:flex;
-justify-content:space-between;
+padding:20px;
+text-align:center;
+border-top:1px solid #ddd;
+margin-top:40px;
 }
 
 .popup{
@@ -205,149 +117,68 @@ background:#111;
 color:#fff;
 padding:10px 14px;
 font-size:12px;
-z-index:9999;
 border-radius:4px;
-font-family:var(--mono);
-animation:fadein .4s;
+font-family:'JetBrains Mono';
 }
 
-@keyframes fadein{
-from{opacity:0;transform:translateY(10px)}
-to{opacity:1;transform:translateY(0)}
-}
+@media(max-width:900px){
 
-/* MOBILE */
-
-@media (max-width:960px){
-
-.main-grid{
+.container{
 grid-template-columns:1fr;
-padding:0 1.2rem;
 }
 
-.left-col{
-padding:2rem 0 1.5rem;
-border-right:none;
-border-bottom:1px solid var(--border);
-}
-
-.right-col{
-padding:1.8rem 0;
-}
-
-.page-title{
-font-size:clamp(2.6rem,10vw,3.4rem);
-}
-
-.engine-wrap{
-font-size:.8rem;
-padding:1.2rem;
-}
-
-.signup-card{
-padding:1.4rem;
-}
-
-.sc-field{
+.row{
 flex-direction:column;
-gap:8px;
-}
-
-.sc-email{
-width:100%;
-}
-
-.sc-btn{
-width:100%;
-padding:12px;
-}
-
-nav{
-padding:1rem 1.2rem;
-}
-
-footer{
-padding:1rem 1.2rem;
-flex-direction:column;
-gap:8px;
-text-align:center;
-}
-
-.popup{
-left:50%;
-transform:translateX(-50%);
-bottom:14px;
-font-size:11px;
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div id="cur"></div>
-<div id="cur2"></div>
+<div class="container">
 
-<div class="page">
+<div>
 
-<nav>
-<div class="nav-logo">Lexora Prep</div>
-</nav>
-
-<div class="main-grid">
-
-<div class="left-col">
-
-<h1 class="page-title">
+<h1>
 Know Every<br>
 Black Letter Rule<br>
 with Lexora.
 </h1>
 
-<div class="engine-wrap">
+<div class="engine">
 Lexora rule engine initializing...
 </div>
 
 </div>
 
-<div class="right-col">
+<div class="card">
 
-<div class="signup-card">
+<div class="title">Reserve your spot before launch</div>
 
-<div class="sc-title">
-Reserve your spot before we launch
+<div class="sub">First 500 bar candidates only</div>
+
+<div style="display:flex;justify-content:space-between;margin-bottom:5px">
+<span>Spots Remaining</span>
+<span id="spots">440 / 500</span>
 </div>
 
-<div class="sc-sub">
-First 500 bar candidates only
+<div class="bar">
+<div class="fill" id="fill"></div>
 </div>
 
-<div class="sc-spots-row">
-<div>Spots Remaining</div>
-<div id="spotsNum">440 / 500</div>
-</div>
+<div class="row" id="formRow">
 
-<div class="sc-bar">
-<div class="sc-bar-fill" id="spotsFill"></div>
-</div>
+<input id="email" type="email" placeholder="your@email.com">
 
-<div class="sc-field" id="scField">
-
-<input
-type="email"
-id="scEmail"
-class="sc-email"
-placeholder="your@email.com">
-
-<button class="sc-btn" onclick="doSubmit()">
-Notify Me
-</button>
+<button onclick="submitEmail()">Notify Me</button>
 
 </div>
 
-<div class="sc-success" id="scSuccess">
+<div class="success" id="success">
 You're on the list. We'll email you when Lexora launches.
 </div>
 
@@ -355,526 +186,72 @@ You're on the list. We'll email you when Lexora launches.
 
 </div>
 
-</div>
-
 <footer>
-<div>© 2026 Lexora Prep</div>
-<div>Lex est ratio scripta</div>
+© 2026 Lexora Prep
 </footer>
 
-</div>
-
 <script>
-
-/* cursor */
-
-const c1=document.getElementById('cur')
-const c2=document.getElementById('cur2')
-
-let mx=0,my=0,rx=0,ry=0
-
-document.addEventListener('mousemove',e=>{
-mx=e.clientX
-my=e.clientY
-})
-
-function loop(){
-c1.style.left=mx+'px'
-c1.style.top=my+'px'
-rx+=(mx-rx)*.13
-ry+=(my-ry)*.13
-c2.style.left=rx+'px'
-c2.style.top=ry+'px'
-requestAnimationFrame(loop)
-}
-loop()
-
-/* counter */
 
 const TOTAL=500
 let claimed=60
 
-const spotsEl=document.getElementById('spotsNum')
-const fillEl=document.getElementById('spotsFill')
+const spots=document.getElementById("spots")
+const fill=document.getElementById("fill")
 
-function updateSpots(n){
-const left=TOTAL-n
-const pct=Math.round((n/TOTAL)*100)
-spotsEl.textContent=left+" / "+TOTAL
-fillEl.style.width=pct+"%"
+function update(){
+
+const left=TOTAL-claimed
+const pct=(claimed/TOTAL)*100
+
+spots.innerText=left+" / "+TOTAL
+fill.style.width=pct+"%"
+
 }
 
-updateSpots(claimed)
+update()
 
-/* submit */
+async function submitEmail(){
 
-async function doSubmit(){
+const email=document.getElementById("email").value.trim()
 
-const inp=document.getElementById('scEmail')
-const field=document.getElementById('scField')
-const succ=document.getElementById('scSuccess')
-
-if(field.style.display==="none") return
-
-const email=inp.value.trim()
-
-if(!email || !email.includes("@") || email.split("@")[1].indexOf(".")<1){
-inp.style.borderColor="#B22222"
-return
-}
-
-try{
+if(!email.includes("@")) return
 
 await fetch("https://formspree.io/f/xgonnabr",{
 method:"POST",
 headers:{
-"Content-Type":"application/json",
-"Accept":"application/json"
+"Content-Type":"application/json"
 },
-body:JSON.stringify({email:email})
+body:JSON.stringify({email})
 })
 
-}catch(e){console.log(e)}
+claimed+=2
+update()
 
-claimed += 2
-updateSpots(claimed)
-
-field.style.display="none"
-succ.style.display="block"
+document.getElementById("formRow").style.display="none"
+document.getElementById("success").style.display="block"
 
 }
 
-/* social proof */
+const names=["Alex","Sarah","Daniel","Chris","Maria","David"]
+const cities=["NY","Texas","Chicago","California"]
 
-const names=["Alex","Sarah","Daniel","Chris","Maria","David","Liam","Emma"]
-const cities=["NY","Texas","California","Florida","Chicago","Boston"]
-
-function popupSignup(){
+function popup(){
 
 const name=names[Math.floor(Math.random()*names.length)]
 const city=cities[Math.floor(Math.random()*cities.length)]
 
-const box=document.createElement("div")
-box.className="popup"
-box.innerHTML=`${name} from ${city} joined the waitlist`
+const div=document.createElement("div")
+div.className="popup"
 
-document.body.appendChild(box)
+div.innerText=name+" from "+city+" joined the waitlist"
 
-setTimeout(()=>box.remove(),5000)
+document.body.appendChild(div)
+
+setTimeout(()=>div.remove(),5000)
 
 }
 
-setInterval(popupSignup,18000)
-
-</script>
-
-</body>
-</html>font-family:var(--mono);
-overflow-x:hidden;
-cursor:default;
-}
-
-/* CUSTOM CURSOR */
-
-.cursor{
-position:fixed;
-width:9px;height:9px;
-background:var(--blue);
-border-radius:50%;
-pointer-events:none;
-z-index:9999;
-transform:translate(-50%,-50%);
-}
-
-.cursor-ring{
-position:fixed;
-width:34px;height:34px;
-border:1.5px solid rgba(26,79,214,0.35);
-border-radius:50%;
-pointer-events:none;
-z-index:9998;
-transform:translate(-50%,-50%);
-}
-
-/* GRID BG */
-
-.grid-bg{
-position:fixed;inset:0;
-background-image:
-linear-gradient(rgba(26,79,214,0.05) 1px,transparent 1px),
-linear-gradient(90deg,rgba(26,79,214,0.05) 1px,transparent 1px);
-background-size:64px 64px;
-pointer-events:none;
-}
-
-.page{
-min-height:100vh;
-display:grid;
-grid-template-rows:auto 1fr auto;
-}
-
-/* HEADER */
-
-header{
-padding:1.6rem 2.5rem;
-display:flex;
-justify-content:space-between;
-align-items:center;
-border-bottom:1px solid var(--border-md);
-}
-
-.logo-wrap{
-display:flex;
-align-items:center;
-gap:0.8rem;
-}
-
-.logo-mark{
-width:30px;height:30px;
-border:1.5px solid var(--ink);
-display:grid;place-items:center;
-}
-
-.logo-mark span{
-font-family:var(--serif);
-font-style:italic;
-font-size:1.05rem;
-}
-
-.logo-name{
-font-size:0.62rem;
-letter-spacing:0.38em;
-text-transform:uppercase;
-}
-
-.header-right{
-display:flex;
-gap:1.2rem;
-}
-
-.pill{
-font-size:0.52rem;
-letter-spacing:0.22em;
-text-transform:uppercase;
-color:var(--ink-soft);
-padding:0.28rem 0.7rem;
-border:1px solid var(--border-md);
-}
-
-/* MAIN */
-
-main{
-display:grid;
-grid-template-columns:1fr 400px;
-max-width:1280px;
-margin:0 auto;
-padding:0 2.5rem;
-}
-
-.left{
-padding:4rem 4.5rem 4rem 0;
-border-right:1px solid var(--border-md);
-}
-
-.headline{
-font-family:var(--display);
-font-size:clamp(5rem,11vw,10.5rem);
-line-height:0.87;
-}
-
-.blue-fill{color:var(--blue);}
-.stroke{-webkit-text-stroke:2px var(--ink);color:transparent;}
-
-.subhead{
-margin-top:2rem;
-font-family:var(--serif);
-font-style:italic;
-font-size:1.08rem;
-line-height:1.75;
-max-width:480px;
-}
-
-.stats-row{
-display:flex;
-margin-top:2.8rem;
-border-top:1.5px solid var(--border-md);
-border-bottom:1.5px solid var(--border-md);
-}
-
-.stat{
-flex:1;
-padding:1.2rem 1.4rem;
-border-right:1px solid var(--border);
-}
-
-.stat:last-child{border-right:none;}
-
-.stat-n{
-font-family:var(--display);
-font-size:2.8rem;
-}
-
-.stat-label{
-font-size:0.48rem;
-letter-spacing:0.28em;
-text-transform:uppercase;
-color:var(--ink-faint);
-}
-
-.subjects{
-display:flex;
-flex-wrap:wrap;
-gap:0.45rem;
-margin-top:2rem;
-}
-
-.tag{
-font-size:0.49rem;
-letter-spacing:0.2em;
-text-transform:uppercase;
-color:var(--ink-mid);
-padding:0.32rem 0.7rem;
-border:1px solid var(--border-md);
-}
-
-.right{
-padding:3.5rem 0 3.5rem 3rem;
-}
-
-.spots-block{
-margin-bottom:2rem;
-padding:1.4rem;
-background:var(--bg2);
-border:1px solid var(--border-md);
-}
-
-.spots-top{
-display:flex;
-justify-content:space-between;
-margin-bottom:0.9rem;
-}
-
-.track{
-height:3px;
-background:var(--border-md);
-position:relative;
-}
-
-.track-fill{
-position:absolute;
-top:0;left:0;bottom:0;
-background:var(--blue);
-width:0%;
-}
-
-.email-input{
-width:100%;
-padding:0.95rem 1rem;
-border:1.5px solid var(--border-md);
-font-family:var(--mono);
-}
-
-.cta-btn{
-width:100%;
-padding:1rem 1.5rem;
-background:var(--ink);
-color:var(--bg);
-border:none;
-font-family:var(--mono);
-letter-spacing:0.38em;
-text-transform:uppercase;
-cursor:pointer;
-margin-top:10px;
-}
-
-.success-box{
-display:none;
-padding:1.1rem;
-background:var(--blue-pale);
-border:1.5px solid rgba(26,79,214,0.3);
-margin-top:0.5rem;
-}
-
-</style>
-</head>
-
-<body>
-
-<div class="cursor" id="cur"></div>
-<div class="cursor-ring" id="ring"></div>
-<div class="grid-bg"></div>
-
-<div class="page">
-
-<header>
-
-<div class="logo-wrap">
-<div class="logo-mark"><span>L</span></div>
-<span class="logo-name">Lexora Prep</span>
-</div>
-
-<div class="header-right">
-<div class="pill">UBE Bar Exam</div>
-<div class="pill">2026</div>
-</div>
-
-</header>
-
-<main>
-
-<div class="left">
-
-<div class="headline">
-<span>KNOW</span>
-<span class="stroke">THE</span>
-<span class="blue-fill">RULES.</span>
-</div>
-
-<p class="subhead">
-<strong>Lexora Prep</strong> is a precision-engineered memorization system
-for the UBE Bar Exam. Every black letter rule. Every tested subject.
-Built for candidates who need to learn faster and retain longer.
-</p>
-
-<div class="stats-row">
-
-<div class="stat">
-<div class="stat-n">1,200+</div>
-<div class="stat-label">Black Letter Rules</div>
-</div>
-
-<div class="stat">
-<div class="stat-n">12</div>
-<div class="stat-label">UBE Subjects</div>
-</div>
-
-<div class="stat">
-<div class="stat-n">500</div>
-<div class="stat-label">Early Access Spots</div>
-</div>
-
-</div>
-
-<div class="subjects">
-
-<div class="tag">Constitutional Law</div>
-<div class="tag">Contracts</div>
-<div class="tag">Criminal Law</div>
-<div class="tag">Criminal Procedure</div>
-<div class="tag">Real Property</div>
-<div class="tag">Torts</div>
-<div class="tag">Evidence</div>
-<div class="tag">Civil Procedure</div>
-<div class="tag">Business Associations</div>
-<div class="tag">Wills & Trusts</div>
-<div class="tag">Family Law</div>
-
-</div>
-
-</div>
-
-<div class="right">
-
-<div class="spots-block">
-
-<div class="spots-top">
-<div>Early Access Availability</div>
-<div id="spotsNum">440 / 500</div>
-</div>
-
-<div class="track">
-<div class="track-fill" id="trackFill"></div>
-</div>
-
-</div>
-
-<div class="form-block">
-
-<form action="https://formspree.io/f/xgonnabr" method="POST" onsubmit="handleSubmit()">
-
-<input
-type="email"
-name="email"
-class="email-input"
-id="emailField"
-placeholder="your@email.com"
-required>
-
-<button class="cta-btn" type="submit">
-Claim My Early Access Spot
-</button>
-
-</form>
-
-<div class="success-box" id="successBox">
-You're on the list. We'll notify you when we launch.
-</div>
-
-</div>
-
-</div>
-
-</main>
-
-</div>
-
-<script>
-
-const cur=document.getElementById('cur');
-const ring=document.getElementById('ring');
-
-let mx=0,my=0,rx=0,ry=0;
-
-document.addEventListener('mousemove',e=>{
-mx=e.clientX;
-my=e.clientY;
-});
-
-(function loop(){
-cur.style.left=mx+'px';
-cur.style.top=my+'px';
-
-rx+=(mx-rx)*0.13;
-ry+=(my-ry)*0.13;
-
-ring.style.left=rx+'px';
-ring.style.top=ry+'px';
-
-requestAnimationFrame(loop);
-
-})();
-
-const TOTAL=500;
-let claimed=60;
-
-const spotsEl=document.getElementById('spotsNum');
-const fillEl=document.getElementById('trackFill');
-
-function updateSpots(n){
-
-const left=TOTAL-n;
-const pct=Math.round((n/TOTAL)*100);
-
-spotsEl.textContent=left+" / "+TOTAL;
-fillEl.style.width=pct+"%";
-
-}
-
-updateSpots(claimed);
-
-function handleSubmit(){
-
-const box=document.getElementById('successBox');
-
-claimed+=2;
-
-updateSpots(claimed);
-
-setTimeout(()=>{
-box.style.display="block";
-},200);
-
-}
+setInterval(popup,20000)
 
 </script>
 
