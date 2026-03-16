@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
 
 <meta charset="UTF-8">
@@ -12,184 +11,450 @@
 
 <style>
 
-body{
+*{
+box-sizing:border-box;
 margin:0;
-font-family:'Cormorant Garamond',serif;
-background:#f6f2ea;
-color:#1a1a1a;
+padding:0;
 }
 
-.container{
-max-width:1100px;
-margin:auto;
-padding:40px 20px;
+body{
+background:#f8f5ef;
+color:#111;
+font-family:'Cormorant Garamond',serif;
+}
+
+.page{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+}
+
+nav{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 40px;
+border-bottom:1px solid rgba(0,0,0,0.1);
+}
+
+.logo{
+font-weight:700;
+font-size:22px;
+}
+
+.badges{
+display:flex;
+gap:10px;
+}
+
+.badge{
+font-family:'JetBrains Mono';
+font-size:11px;
+letter-spacing:.18em;
+padding:4px 10px;
+border:1px solid rgba(0,0,0,0.2);
+}
+
+.grid{
+flex:1;
 display:grid;
 grid-template-columns:1fr 380px;
+max-width:1200px;
+margin:auto;
+width:100%;
+padding:60px 40px;
 gap:60px;
 }
 
-h1{
-font-size:56px;
-line-height:1.05;
-margin-bottom:20px;
+.label{
+font-family:'JetBrains Mono';
+font-size:11px;
+letter-spacing:.3em;
+margin-bottom:25px;
+}
+
+.title{
+font-size:72px;
+line-height:.95;
+margin-bottom:30px;
+}
+
+.title em{
+font-style:italic;
 }
 
 .engine{
 background:#0e0e0e;
-color:#9cff9c;
-padding:20px;
-font-family:'JetBrains Mono',monospace;
-margin-top:20px;
-border-radius:4px;
-min-height:60px;
+border-radius:6px;
+overflow:hidden;
+box-shadow:0 30px 70px rgba(0,0,0,.35);
 }
 
-.card{
-background:#efe9df;
-padding:25px;
-border:1px solid #ddd;
+.chrome{
+background:rgba(255,255,255,.05);
+padding:10px 16px;
+display:flex;
+align-items:center;
+gap:10px;
+border-bottom:1px solid rgba(255,255,255,.1);
 }
 
-.title{
-font-size:26px;
-margin-bottom:5px;
+.dot{
+width:10px;
+height:10px;
+border-radius:50%;
 }
 
-.sub{
+.dot:nth-child(1){background:#ff5f57}
+.dot:nth-child(2){background:#febc2e}
+.dot:nth-child(3){background:#28c840}
+
+.chrome-text{
+font-family:'JetBrains Mono';
+font-size:10px;
+letter-spacing:.18em;
+color:rgba(255,255,255,.3);
+margin-left:10px;
+}
+
+.engine-body{
+padding:30px;
+min-height:200px;
+}
+
+.subject{
+display:inline-block;
 font-family:'JetBrains Mono';
 font-size:11px;
-letter-spacing:.18em;
-text-transform:uppercase;
+letter-spacing:.2em;
+padding:4px 10px;
+border:1px solid rgba(255,255,255,.3);
+color:#e0b44c;
 margin-bottom:20px;
+}
+
+.rule{
+font-family:'JetBrains Mono';
+font-size:15px;
+line-height:1.7;
+color:#eaeaea;
+min-height:80px;
+}
+
+.cursor{
+display:inline-block;
+width:2px;
+height:1em;
+background:white;
+margin-left:3px;
+animation:blink 1s infinite;
+}
+
+@keyframes blink{
+0%,100%{opacity:1}
+50%{opacity:0}
+}
+
+.meta{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:25px;
+padding-top:15px;
+border-top:1px solid rgba(255,255,255,.1);
+}
+
+.rule-num{
+font-family:'JetBrains Mono';
+font-size:10px;
+letter-spacing:.2em;
+color:rgba(255,255,255,.3);
+}
+
+.progress{
+display:flex;
+align-items:center;
+gap:10px;
 }
 
 .bar{
-height:4px;
-background:#ddd;
-margin-bottom:20px;
+width:90px;
+height:2px;
+background:rgba(255,255,255,.2);
 position:relative;
 }
 
 .fill{
 position:absolute;
 height:100%;
-background:#111;
-width:0;
+background:white;
+width:20%;
 }
 
-.row{
+.count{
+font-family:'JetBrains Mono';
+font-size:10px;
+color:rgba(255,255,255,.3);
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+margin-top:30px;
+border:1px solid rgba(0,0,0,.15);
+}
+
+.stat{
+padding:20px;
+border-right:1px solid rgba(0,0,0,.15);
+}
+
+.stat:last-child{
+border-right:none;
+}
+
+.stat-num{
+font-size:28px;
+font-weight:700;
+}
+
+.stat-label{
+font-family:'JetBrains Mono';
+font-size:10px;
+letter-spacing:.25em;
+margin-top:4px;
+color:#777;
+}
+
+.subjects{
+margin-top:25px;
+}
+
+.subjects-title{
+font-family:'JetBrains Mono';
+font-size:11px;
+letter-spacing:.3em;
+margin-bottom:10px;
+}
+
+.subject-grid{
 display:flex;
-gap:10px;
+flex-wrap:wrap;
+gap:6px;
 }
 
-input{
+.tag{
+font-family:'JetBrains Mono';
+font-size:10px;
+letter-spacing:.15em;
+padding:4px 10px;
+border:1px solid rgba(0,0,0,.2);
+}
+
+.card{
+border:1px solid rgba(0,0,0,.15);
+background:#f1ece4;
+padding:25px;
+}
+
+.card h3{
+font-size:24px;
+margin-bottom:5px;
+}
+
+.sub{
+font-family:'JetBrains Mono';
+font-size:10px;
+letter-spacing:.2em;
+margin-bottom:20px;
+}
+
+.spots{
+display:flex;
+justify-content:space-between;
+margin-bottom:8px;
+}
+
+.bar2{
+height:3px;
+background:#ddd;
+margin-bottom:15px;
+}
+
+.fill2{
+height:100%;
+background:#111;
+width:20%;
+transition:width .5s;
+}
+
+.input{
+display:flex;
+}
+
+.input input{
 flex:1;
 padding:12px;
-font-family:'JetBrains Mono';
 border:1px solid #ccc;
+font-family:'JetBrains Mono';
 }
 
-button{
-padding:12px 18px;
+.input button{
+padding:12px 16px;
 background:#111;
-color:#fff;
+color:white;
 border:none;
+font-family:'JetBrains Mono';
+letter-spacing:.15em;
 cursor:pointer;
 }
 
-.success{
-display:none;
-background:#e7f6ea;
-padding:10px;
-margin-top:10px;
+.feed{
+border:1px solid rgba(0,0,0,.15);
+margin-top:20px;
+}
+
+.feed-header{
+background:#f1ece4;
+padding:10px 15px;
+display:flex;
+justify-content:space-between;
+font-family:'JetBrains Mono';
+font-size:11px;
+letter-spacing:.2em;
+}
+
+.feed-item{
+display:flex;
+justify-content:space-between;
+padding:10px 15px;
+border-top:1px solid rgba(0,0,0,.1);
+font-family:'JetBrains Mono';
+font-size:11px;
+}
+
+.analytics{
+text-align:center;
+margin-top:20px;
+font-family:'JetBrains Mono';
+font-size:11px;
+color:#666;
 }
 
 footer{
-padding:20px;
 text-align:center;
-border-top:1px solid #ddd;
-margin-top:40px;
+padding:25px;
+border-top:1px solid rgba(0,0,0,.1);
+margin-top:auto;
 }
-
-.popup{
-position:fixed;
-bottom:20px;
-left:20px;
-background:#111;
-color:#fff;
-padding:10px 14px;
-font-size:12px;
-border-radius:4px;
-font-family:'JetBrains Mono';
-animation:fadein .4s;
-}
-
-@keyframes fadein{
-from{opacity:0;transform:translateY(10px)}
-to{opacity:1;transform:translateY(0)}
-}
-
-/* MOBILE */
 
 @media(max-width:900px){
 
-.container{
+.grid{
 grid-template-columns:1fr;
 }
 
-.row{
-flex-direction:column;
+.title{
+font-size:46px;
 }
 
 }
 
 </style>
-
 </head>
 
 <body>
 
-<div class="container">
+<div class="page">
+
+<nav>
+<div class="logo">Lexora.Prep</div>
+<div class="badges">
+<div class="badge">UBE BAR EXAM</div>
+<div class="badge">12 SUBJECTS</div>
+<div class="badge">COMING SOON</div>
+</div>
+</nav>
+
+<div class="grid">
 
 <div>
 
-<h1>
+<div class="label">THE LAW MEMORIZATION ENGINE</div>
+
+<div class="title">
 Know Every<br>
-Black Letter Rule<br>
-with Lexora.
-</h1>
+<em>Black Letter</em><br>
+Rule — with<br>
+Lexora Prep.
+</div>
 
 <div class="engine">
-<span id="typing"></span>
+
+<div class="chrome">
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="chrome-text">LEXORA ENGINE — LIVE RULE FEED</div>
+</div>
+
+<div class="engine-body">
+
+<div class="subject">REAL PROPERTY</div>
+
+<div class="rule" id="rule"></div>
+
+<div class="meta">
+<div class="rule-num">RULE #005</div>
+
+<div class="progress">
+<div class="bar"><div class="fill"></div></div>
+<div class="count">5 / 1,200+</div>
 </div>
 
 </div>
+
+</div>
+
+</div>
+
+</div>
+
+<div>
 
 <div class="card">
 
-<div class="title">Reserve your spot before launch</div>
+<h3>Reserve your spot<br><em>before we launch.</em></h3>
 
-<div class="sub">First 500 bar candidates only</div>
+<div class="sub">EARLY ACCESS • FIRST 500 BAR CANDIDATES ONLY</div>
 
-<div style="display:flex;justify-content:space-between;margin-bottom:5px">
+<div class="spots">
 <span>Spots Remaining</span>
-<span id="spots">440 / 500</span>
+<span id="spots">430 / 500</span>
 </div>
 
-<div class="bar">
-<div class="fill" id="fill"></div>
+<div class="bar2"><div class="fill2" id="fillbar"></div></div>
+
+<div class="input">
+<input id="email" placeholder="your@email.com">
+<button onclick="submitEmail()">NOTIFY ME</button>
 </div>
-
-<div class="row" id="formRow">
-
-<input id="email" type="email" placeholder="your@email.com">
-
-<button onclick="submitEmail()">Notify Me</button>
 
 </div>
 
-<div class="success" id="success">
-You're on the list. We'll email you when Lexora launches.
+<div class="feed">
+
+<div class="feed-header">
+<span>RECENT SIGN-UPS</span>
+<span>LIVE</span>
+</div>
+
+<div id="feed"></div>
+
+</div>
+
+<div class="analytics">
+Visitor analytics powered by Counter.dev
 </div>
 
 </div>
@@ -200,125 +465,121 @@ You're on the list. We'll email you when Lexora launches.
 © 2026 Lexora Prep
 </footer>
 
+</div>
+
 <script>
 
-/* COUNTER */
-
-const TOTAL=500
-let claimed=60
-
-const spots=document.getElementById("spots")
-const fill=document.getElementById("fill")
-
-function update(){
-
-const left=TOTAL-claimed
-const pct=(claimed/TOTAL)*100
-
-spots.innerText=left+" / "+TOTAL
-fill.style.width=pct+"%"
-
-}
-
-update()
-
-/* EMAIL SUBMISSION */
-
-async function submitEmail(){
-
-const email=document.getElementById("email").value.trim()
-
-if(!email.includes("@")) return
-
-await fetch("https://formspree.io/f/xgonnabr",{
-method:"POST",
-headers:{
-"Content-Type":"application/json"
-},
-body:JSON.stringify({email})
-})
-
-claimed+=2
-update()
-
-document.getElementById("formRow").style.display="none"
-document.getElementById("success").style.display="block"
-
-}
-
-/* SOCIAL PROOF POPUPS */
-
-const names=["Alex","Sarah","Daniel","Chris","Maria","David"]
-const cities=["NY","Texas","Chicago","California"]
-
-function popup(){
-
-const name=names[Math.floor(Math.random()*names.length)]
-const city=cities[Math.floor(Math.random()*cities.length)]
-
-const div=document.createElement("div")
-div.className="popup"
-
-div.innerText=name+" from "+city+" joined the waitlist"
-
-document.body.appendChild(div)
-
-setTimeout(()=>div.remove(),5000)
-
-}
-
-setInterval(popup,20000)
-
-/* TYPING ENGINE */
+/* typing engine */
 
 const rules=[
-
-"Rule #101 — Consideration requires a bargained-for exchange.",
-
-"Rule #214 — A valid contract requires offer, acceptance, and consideration.",
-
-"Rule #338 — Hearsay is an out-of-court statement offered for the truth of the matter asserted.",
-
-"Rule #412 — Negligence requires duty, breach, causation, and damages.",
-
-"Rule #517 — Personal jurisdiction requires minimum contacts."
-
+"A fee simple absolute is the greatest estate in land, giving its owner unlimited power to dispose of the property.",
+"Hearsay is an out-of-court statement offered to prove the truth of the matter asserted.",
+"A contract requires offer, acceptance, and consideration."
 ]
 
-let ruleIndex=0
-let charIndex=0
+let r=0
+let i=0
+const el=document.getElementById("rule")
 
-const typingEl=document.getElementById("typing")
+function type(){
 
-function typeRule(){
+if(i<rules[r].length){
 
-if(charIndex<rules[ruleIndex].length){
+el.innerHTML+=rules[r].charAt(i)
+i++
 
-typingEl.textContent+=rules[ruleIndex].charAt(charIndex)
-charIndex++
+setTimeout(type,25)
 
-setTimeout(typeRule,30)
-
-}
-
-else{
+}else{
 
 setTimeout(()=>{
-
-typingEl.textContent=""
-charIndex=0
-ruleIndex=(ruleIndex+1)%rules.length
-
-typeRule()
-
+el.innerHTML=""
+i=0
+r=(r+1)%rules.length
+type()
 },2500)
 
 }
 
 }
 
-typeRule()
+type()
 
+/* counter */
+
+let spots=430
+const spotEl=document.getElementById("spots")
+const fill=document.getElementById("fillbar")
+
+function updateCounter(){
+
+spotEl.innerText=spots+" / 500"
+
+let percent=((500-spots)/500)*100
+fill.style.width=percent+"%"
+
+}
+
+updateCounter()
+
+setInterval(()=>{
+
+spots--
+
+if(spots<=10){
+spots=300
+}
+
+updateCounter()
+
+},60000)
+
+/* email signup */
+
+async function submitEmail(){
+
+let email=document.getElementById("email").value
+
+await fetch("https://formspree.io/f/xgonnabr",{
+method:"POST",
+headers:{'Content-Type':'application/json'},
+body:JSON.stringify({email:email})
+})
+
+alert("You're on the list!")
+
+}
+
+/* feed */
+
+const names=["Alex","Chris","Daniel","Maria","John","Sara","David"]
+
+function addFeed(){
+
+let feed=document.getElementById("feed")
+
+let name=names[Math.floor(Math.random()*names.length)]
+
+let div=document.createElement("div")
+div.className="feed-item"
+
+div.innerHTML="<span>"+name+" joined the waitlist</span><span>1m</span>"
+
+feed.prepend(div)
+
+if(feed.children.length>5){
+feed.removeChild(feed.lastChild)
+}
+
+}
+
+setInterval(addFeed,15000)
+
+</script>
+
+<script src="https://cdn.counter.dev/script.js"
+data-id="lexora-prep"
+data-utcoffset="9">
 </script>
 
 </body>
