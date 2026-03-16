@@ -3,81 +3,73 @@
 <head>
 <title>Lexora Prep</title>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <style>
 
 body{
-margin:0;
-font-family:"Georgia", serif;
-background-image:url("https://images.unsplash.com/photo-1521587760476-6c12a4b040da");
-background-size:cover;
-background-position:center;
-height:100vh;
+font-family:Arial, sans-serif;
+background:#f7f7f7;
 display:flex;
 align-items:center;
 justify-content:center;
-color:#222;
+height:100vh;
+margin:0;
 }
 
-.overlay{
-background:rgba(255,255,255,0.93);
-padding:50px;
-border-radius:14px;
-box-shadow:0 15px 40px rgba(0,0,0,0.25);
-max-width:620px;
+.card{
+background:white;
+padding:40px;
+border-radius:10px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
 text-align:center;
+max-width:520px;
 }
 
 h1{
-font-size:36px;
-margin-bottom:8px;
-letter-spacing:1px;
+margin-bottom:10px;
 }
 
-.latin{
-font-style:italic;
-color:#555;
+.tagline{
+font-size:18px;
 margin-bottom:20px;
 }
 
-p{
+.highlight{
+color:#6b1d1d;
+font-style:italic;
+font-weight:bold;
+}
+
+.description{
+color:#2f2f2f;
 line-height:1.6;
 }
 
 input{
-padding:14px;
+padding:12px;
 width:70%;
 margin-top:20px;
-border:1px solid #bbb;
-border-radius:6px;
-font-size:16px;
+border:1px solid #ccc;
+border-radius:5px;
 }
 
 button{
-padding:14px 24px;
-margin-top:18px;
-background:#111;
+padding:12px 20px;
+margin-top:20px;
+background:black;
 color:white;
 border:none;
-border-radius:6px;
+border-radius:5px;
 cursor:pointer;
-font-size:16px;
 }
 
 button:hover{
 background:#333;
 }
 
-.early{
-margin-top:12px;
-font-size:14px;
-color:#8b0000;
-font-weight:bold;
-}
-
-.footer{
-margin-top:25px;
+.small{
+margin-top:20px;
 font-size:14px;
 color:#666;
 }
@@ -87,45 +79,34 @@ color:#666;
 
 <body>
 
-<div class="overlay">
+<div class="card">
 
 <h1>Lexora Prep</h1>
 
-<div class="latin">
-Scientia potentia est · Sapere aude
-</div>
-
-<p>
-A smarter way to master <strong>Black Letter Law</strong> for the U.S. Bar Exam.
+<p class="tagline">
+Know the <span class="highlight">rules</span>. Pass the exam with <span class="highlight">Lexora Prep</span>.
 </p>
 
-<p>
-Law students memorize hundreds of rules.  
-Lexora transforms memorization into structured rule-training.
+<p class="description">
+Lexora Prep is a precision-built memorization engine for the UBE bar exam.  
+It helps bar candidates master Black Letter Law through structured rule recall,
+performance tracking, and targeted reinforcement.
 </p>
 
-<p>
+<p class="description">
 The platform is currently under development.  
-Join the waitlist to receive early access.
+Join the waitlist to be notified when Lexora Prep launches.
 </p>
 
 <form action="https://formspree.io/f/xgonnabr" method="POST">
-
 <input type="email" name="email" placeholder="Enter your email" required>
-
 <br>
-
-<button type="submit">Join Early Access</button>
-
+<button type="submit">Join Waitlist</button>
 </form>
 
-<div class="early">
+<p class="small">
 Early access limited to the first 500 bar candidates.
-</div>
-
-<div class="footer">
-Knowledge favors the prepared mind.
-</div>
+</p>
 
 </div>
 
