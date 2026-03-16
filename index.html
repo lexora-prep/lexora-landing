@@ -23,7 +23,6 @@
 --blue-mid:#3061e0;
 --blue-pale:#dce6fc;
 --gold:#9a6e00;
---gold-pale:#f5e9c8;
 --border:rgba(17,16,24,0.1);
 --border-md:rgba(17,16,24,0.18);
 --display:'Bebas Neue',sans-serif;
@@ -37,10 +36,10 @@ background:var(--bg);
 color:var(--ink);
 font-family:var(--mono);
 overflow-x:hidden;
-cursor:none;
+cursor:default;
 }
 
-/* CURSOR */
+/* CUSTOM CURSOR */
 
 .cursor{
 position:fixed;
@@ -76,8 +75,10 @@ pointer-events:none;
 .page{
 min-height:100vh;
 display:grid;
-grid-template-rows:auto 1fr auto auto;
+grid-template-rows:auto 1fr auto;
 }
+
+/* HEADER */
 
 header{
 padding:1.6rem 2.5rem;
@@ -124,6 +125,8 @@ color:var(--ink-soft);
 padding:0.28rem 0.7rem;
 border:1px solid var(--border-md);
 }
+
+/* MAIN */
 
 main{
 display:grid;
@@ -231,7 +234,7 @@ width:0%;
 
 .email-input{
 width:100%;
-padding:0.95rem 1rem 0.95rem 2.3rem;
+padding:0.95rem 1rem;
 border:1.5px solid var(--border-md);
 font-family:var(--mono);
 }
@@ -245,7 +248,7 @@ border:none;
 font-family:var(--mono);
 letter-spacing:0.38em;
 text-transform:uppercase;
-cursor:none;
+cursor:pointer;
 margin-top:10px;
 }
 
@@ -382,6 +385,30 @@ You're on the list. We'll notify you when we launch.
 
 <script>
 
+const cur=document.getElementById('cur');
+const ring=document.getElementById('ring');
+
+let mx=0,my=0,rx=0,ry=0;
+
+document.addEventListener('mousemove',e=>{
+mx=e.clientX;
+my=e.clientY;
+});
+
+(function loop(){
+cur.style.left=mx+'px';
+cur.style.top=my+'px';
+
+rx+=(mx-rx)*0.13;
+ry+=(my-ry)*0.13;
+
+ring.style.left=rx+'px';
+ring.style.top=ry+'px';
+
+requestAnimationFrame(loop);
+
+})();
+
 const TOTAL=500;
 let claimed=60;
 
@@ -402,10 +429,10 @@ updateSpots(claimed);
 
 function handleSubmit(){
 
-const f=document.getElementById('emailField');
 const box=document.getElementById('successBox');
 
 claimed+=2;
+
 updateSpots(claimed);
 
 setTimeout(()=>{
